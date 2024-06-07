@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my website</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;500;600;700&display=swap');
+        *{
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            font-family: 'Poppins', sans-serif;
+        }
+        .header{
+            position: relative;
+            min-height: 70vh;
+            color: white;
+            background-image: url(/pexels-irina-iriser-1366957.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        .container{
+            max-height: 1200px;
+            width: 90%;
+            margin: auto;
+        }
+        .nav{
+            min-width: 8vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-items{
+            display: flex;
+            width: 40%;
+            list-style: none;
+            justify-content: space-between;
+        }
+        .headline{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            text-align: center;
+            transform: translate(-50%,-50%) ;
+        }
+        .btn{
+            outline: none;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-headline{
+            padding: 1rem 2rem;
+            margin-top: 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .todo-section{
+            margin-top: 5rem;
+            text-align: center;
+        }
+        .form-todo{
+            min-height: 3rem;
+            margin-top: 1rem;
+            display: flex; 
+            justify-content: space-between;
+        }
+        .form-todo input{
+            min-height: 100%;
+        }
+        .form-todo input[type="text"]{
+            width: 78%;
+            font-size: 1rem;
+            padding: 0.8rem;
+            font-weight: 500;
+        }
+        .form-todo input[type="submit"]{
+            width: 20%;
+            background: rgb(44,55,63);
+            font-weight: bold;
+            color: white;
+        }
+        .section-signup{
+            background-color: rgb(212, 216, 219);
+            margin-top: 5rem;
+            text-align: center;
+        }
+        .signup-form{
+            max-width: 800px;
+            margin: auto;
+            width: 95%;
+        }
+        
+        .signup-form input{
+            display: block;
+            width: 100%;
+            padding: 0.7rem;
+        }
+        .signup-form label{
+            display: block;
+            text-align: left;
+        }
+        .signup-form textarea{
+            width: 100%;
+        }
+        .form-group{
+            margin-top: 1rem;
+        }
+        .signup-btn{
+            background: rgb(44,55,63);
+            display: block;
+            margin: auto;
+            color: white;
+            padding: 1rem 2rem;
+            margin-top: 1rem;
+        }
+        .h2-signup{
+            margin-top: 2rem;
+        }
+        
+        
+        .todo-btn{
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .todo-item{
+            min-height: 10vh;
+        }
+        .todo-item li{
+            margin-top: 1rem;
+            
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4.5rem;
+            list-style: none;
+            text-align: left;
+            padding: 0.7rem;
+            background-color: gray;
+            color: black;
+        }
+        </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <h1 class="logo">Website</h1>
+            <ul class="nav-items">
+                <li ><a class="li" href="#">Home</a></li>
+                <li ><a class="li" href="#">About</a></li>
+                <li ><a class="li" href="#">Sign up</a></li>
+            </ul>
+        </nav>
+        <div class="headline">
+            <h1 id="main-heading">Manage your tasks</h1>
+            <button class="btn btn-headline" >Learn more</button>
+        </div>
+    </header>
+    <section class="todo-section container">
+        <h1>Your plan for today ?</h1>
+        <form class="form-todo" action="">
+            <input class="value" type="text" placeholder="Add todo" >
+            <input type="submit"  value="Add todo">
+        </form>
+        <ul class="todo-item">
+        </ul>
+    </section>
+    <section class="section-signup container">
+        <h2 class="h2-signup">Sign Up</h2>
+        <form class="signup-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" >
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" >
+            </div>
+            <div class="form-group">
+                <label for="Confirm Password">Confirm Password</label>
+                <input type="password" >
+            </div>
+            <div class="form-group">
+                <label for="phone">phone</label>
+                <input type="text" >
+            </div>
+            <div class="form-group">
+                <label for="email">email</label>
+                <input type="email" >
+            </div>
+            <div class="form-group">
+                <label for="about">About Yourself</label>
+                <textarea name="about" id="about  " cols="30" rows="10"></textarea>
+            </div>
+            <button type="submit btn" class="signup-btn">Submit</button>
+        </form>
+    </section>
+    <script>
+        const formTodo=document.querySelector(".form-todo")
+const todoItem=document.querySelector(".todo-item")
+formTodo.addEventListener("submit",function(e){
+    e.preventDefault()
+    const value=e.target.querySelector(".value").value
+    // console.log(value)
+    const li =document.createElement("li")
+    const html=`
+                <span class="text">${value}</span>
+                <div class="todo-buttons">
+                    <button class="todo-btn done">done</button>
+                    <button class="todo-btn remove">remove</button>
+                </div>
+            `
+    li.innerHTML=html
+    todoItem.prepend(li)
+    e.target.querySelector(".value").value=""
+    todoItem.addEventListener("click",function(e){
+        var num=0
+        if(e.target.classList.contains("done")){
+            if(num %2===0){
+                console.log(num)
+                e.target.parentElement.previousElementSibling.style.textDecoration="line-through"
+            }else{
+                console.log(num)
+                e.target.parentElement.previousElementSibling.style.textDecoration="none"
+            }
+            num =num+1
+        }
+        if(e.target.classList.contains("remove")){
+            e.target.parentElement.parentElement.remove();
+        }
+    })
+})
+
+    </script>
+</body>
+</html>
